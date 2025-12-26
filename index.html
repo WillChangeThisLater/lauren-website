@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lauren Torrance — Visual Art</title>
+  <style>
+    :root {
+      --bg:#141212;
+      --panel:#1f1d1c;
+      --text:#f4f1ed;
+      --muted:#bfb7b0;
+      --accent:#f0b990;
+      --radius:12px;
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    .page {
+      max-width:1200px;
+      margin:0 auto;
+      padding:3rem 1.5rem 4rem;
+    }
+
+    header {
+      margin-bottom:2.5rem;
+    }
+
+    header p {
+      text-transform:uppercase;
+      letter-spacing:0.3em;
+      font-size:0.85rem;
+      color:var(--muted);
+      margin-bottom:0.5rem;
+    }
+
+    header h1 {
+      font-size:clamp(2rem, 4vw, 3rem);
+      margin:0;
+    }
+
+    .copy {
+      max-width:620px;
+      color:var(--muted);
+      margin-bottom:2rem;
+      line-height:1.7;
+    }
+
+    section.band {
+      background:var(--panel);
+      padding:2.5rem;
+      border-radius:var(--radius);
+      box-shadow:0 25px 60px rgba(0,0,0,0.4);
+    }
+
+    .tiles {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      gap:1.25rem;
+      margin-bottom:2rem;
+    }
+
+    .tile {
+      position:relative;
+      border-radius:var(--radius);
+      overflow:hidden;
+      cursor:pointer;
+      background:#181716;
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tile:hover {
+      transform:translateY(-6px);
+      box-shadow:0 18px 35px rgba(0,0,0,0.4);
+    }
+
+    .tile img {
+      width:100%;
+      display:block;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .tile .meta {
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:1rem;
+      background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,0.65) 100%);
+    }
+
+    .tile strong {
+      font-size:1rem;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+
+    .tile span {
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+
+    .featured {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+      gap:1.5rem;
+      align-items:center;
+      border-top:1px solid rgba(255,255,255,0.1);
+      padding-top:1.5rem;
+    }
+
+    .featured-image {
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .featured-image img {
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+
+    .featured-copy h3 {
+      margin-top:0;
+      margin-bottom:0.5rem;
+    }
+
+    .featured-copy p {
+      margin-top:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .button {
+      display:inline-flex;
+      padding:0.65rem 1.4rem;
+      border:1px solid var(--accent);
+      border-radius:999px;
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:0.2em;
+      font-size:0.75rem;
+      margin-top:1rem;
+      text-decoration:none;
+    }
+
+    /* Lightbox */
+    .modal-overlay {
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.85);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:10;
+      padding:1rem;
+    }
+
+    .modal {
+      max-width:900px;
+      width:100%;
+      background:#181716;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 35px 60px rgba(0,0,0,0.8);
+    }
+
+    .modal img {
+      width:100%;
+      max-height:60vh;
+      object-fit:contain;
+      background:#050505;
+    }
+
+    .modal-content {
+      padding:1.5rem;
+    }
+
+    .modal-content h4 {
+      margin:0 0 0.35rem;
+    }
+
+    .modal-content p {
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .modal-close {
+      position:absolute;
+      top:1rem;
+      right:1rem;
+      background:transparent;
+      border:none;
+      color:var(--text);
+      font-size:1.25rem;
+      cursor:pointer;
+    }
+
+    @media (max-width:640px) {
+      .page {
+        padding:2.5rem 1rem 3rem;
+      }
+
+      .band {
+        padding:2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p>Lauren Torrance</p>
+      <h1>Visual Art</h1>
+      <p class="copy">
+        A neutral gallery band that lets the imagery speak. This section will eventually sit alongside Music and Writing, so it should feel spacious, calm, and easy to edit.
+      </p>
+    </header>
+
+    <section class="band" aria-labelledby="visual-art-title">
+      <h2 id="visual-art-title">Gallery Highlights</h2>
+      <p class="copy">
+        5–7 recent pieces that span painting, collage, and digital mixed media. Clicking any tile opens a lightbox with context and credits.
+      </p>
+
+      <!--
+        To add a piece:
+        1. Duplicate the .tile block below.
+        2. Update data attributes (data-title, data-medium, data-caption, data-image).
+        3. Swap the thumbnail src/alt for the visible image.
+        4. Keep the structure (img + .meta with strong + span) consistent.
+      -->
+      <div class="tiles">
+        <article class="tile" data-title="Still Light" data-medium="Oil on board" data-caption="A study in layered glazes, inspired by evening shifts between city and coast." data-image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" alt="Abstract sunset painting" />
+          <div class="meta">
+            <strong>Still Light</strong>
+            <span>Oil on board</span>
+          </div>
+        </article>
+
+        <article class="tile" data-title="Common Threads" data-medium="Digital collage" data-caption="Layered textures that echo the rhythm of a shared narrative, built from archival scans and digital brushwork." data-image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=60" alt="Collage art" />
+          <div class="meta">
+            <strong>Common Threads</strong>
+            <span>Digital collage</span>
+          </div>
+        </article>
+
+        <article class="tile" data-title="Harbor Lines" data-medium="Mixed media" data-caption="Minimalist strokes with wax and graphite, a quiet portrait of the fog line between water and horizon." data-image="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=60" alt="Minimalist seascape" />
+          <div class="meta">
+            <strong>Harbor Lines</strong>
+            <span>Mixed media</span>
+          </div>
+        </article>
+
+        <article class="tile" data-title="Night Bloom" data-medium="Acrylic on canvas" data-caption="An overgrown garden at twilight, rendered with a restrained palette and velvet brushwork." data-image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=60" alt="Blue botanical painting" />
+          <div class="meta">
+            <strong>Night Bloom</strong>
+            <span>Acrylic on canvas</span>
+          </div>
+        </article>
+
+        <article class="tile" data-title="Quiet Bloom" data-medium="Charcoal & ink" data-caption="Gestural marks that mimic breath, exploring the quiet between words." data-image="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=60" alt="Charcoal art" />
+          <div class="meta">
+            <strong>Quiet Bloom</strong>
+            <span>Charcoal & ink</span>
+          </div>
+        </article>
+
+        <article class="tile" data-title="Field Notes" data-medium="Watercolor" data-caption="Quick studies from road trips, built in the pockets of studio time." data-image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=800&q=60" alt="Watercolor abstract" />
+          <div class="meta">
+            <strong>Field Notes</strong>
+            <span>Watercolor</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="featured">
+        <div class="featured-image">
+          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80" alt="Featured series art" />
+        </div>
+        <div class="featured-copy">
+          <h3>Featured Series — "Fuck Life"</h3>
+          <p>
+            A hybrid book/art installation where Lauren pairs raw, handwritten prose with layered paint studies. This page (and the dedicated story) walks through the work’s physical process, sonic references, and the people who help bring it into the world.
+          </p>
+          <a class="button" href="fuck-life.html">Learn more</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Lightbox structure -->
+  <div class="modal-overlay" id="art-modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" data-close="modal" aria-label="Close">×</button>
+      <img src="" alt="" id="modal-image" />
+      <div class="modal-content">
+        <h4 id="modal-title"></h4>
+        <span id="modal-medium" style="font-size:0.85rem;color:var(--muted);"></span>
+        <p id="modal-caption"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('art-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMedium = document.getElementById('modal-medium');
+    const modalCaption = document.getElementById('modal-caption');
+    const tiles = document.querySelectorAll('.tile');
+
+    tiles.forEach(tile => {
+      tile.addEventListener('click', () => {
+        const image = tile.dataset.image;
+        const title = tile.dataset.title;
+        const medium = tile.dataset.medium;
+        const caption = tile.dataset.caption;
+
+        modalImage.src = image;
+        modalImage.alt = title;
+        modalTitle.textContent = title;
+        modalMedium.textContent = medium;
+        modalCaption.textContent = caption;
+
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    document.querySelector('[data-close="modal"]').addEventListener('click', () => {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  </script>
+</body>
+</html>

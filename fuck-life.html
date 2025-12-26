@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lauren Torrance — "Fuck Life"</title>
+  <style>
+    :root {
+      --bg:#0f0f0f;
+      --panel:#1c1c1c;
+      --text:#f5f3ef;
+      --muted:#c1b9b1;
+      --accent:#f4bfa4;
+      --radius:14px;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      padding:0;
+    }
+
+    .page {
+      max-width:1000px;
+      margin:0 auto;
+      padding:3rem 1.5rem 4rem;
+    }
+
+    header {
+      margin-bottom:2rem;
+    }
+
+    header p {
+      letter-spacing:0.25em;
+      text-transform:uppercase;
+      font-size:0.8rem;
+      color:var(--muted);
+      margin-bottom:0.4rem;
+    }
+
+    header h1 {
+      margin:0;
+      font-size:clamp(2.2rem, 5vw, 3.4rem);
+    }
+
+    header .intro {
+      margin-top:0.75rem;
+      color:var(--muted);
+      max-width:600px;
+      line-height:1.7;
+    }
+
+    .button-link {
+      display:inline-flex;
+      align-items:center;
+      padding:0.65rem 1.3rem;
+      border:1px solid var(--accent);
+      border-radius:999px;
+      color:var(--accent);
+      text-decoration:none;
+      font-size:0.75rem;
+      letter-spacing:0.25em;
+      margin-top:1rem;
+    }
+
+    .panel {
+      background:var(--panel);
+      border-radius:var(--radius);
+      padding:2rem;
+      box-shadow:0 20px 45px rgba(0,0,0,0.5);
+      margin-bottom:2rem;
+    }
+
+    .panel + .panel {
+      margin-top:1rem;
+    }
+
+    .panel h2 {
+      margin-top:0;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+      gap:1.25rem;
+    }
+
+    .callout {
+      border:1px solid rgba(255,255,255,0.07);
+      padding:1.5rem;
+      border-radius:12px;
+      background:rgba(255,255,255,0.02);
+    }
+
+    .callout strong {
+      display:block;
+      margin-bottom:0.4rem;
+      color:var(--text);
+    }
+
+    .note {
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+
+    img,
+    .image-placeholder {
+      width:100%;
+      border-radius:12px;
+      display:block;
+      object-fit:cover;
+    }
+
+    .image-placeholder {
+      height:220px;
+      background:#080808;
+      border:1px dashed rgba(255,255,255,0.2);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-size:0.9rem;
+      text-transform:lowercase;
+    }
+
+    @media (max-width:640px) {
+      .page {
+        padding:2rem 1rem 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p>Lauren Torrance</p>
+      <h1>Fuck Life</h1>
+      <p class="intro">
+        A hybrid book/art project that leans into urgency and humor. Lauren pairs visceral prose with tactile layers of paint, collage, and charcoal to map the chaos and tenderness of living through late-night creativity.
+      </p>
+      <a class="button-link" href="index.html">Back to Visual Art</a>
+    </header>
+
+    <section class="panel">
+      <h2>Project overview</h2>
+      <p>
+        “Fuck Life” is equal parts diary and gallery installation. The work stitches together 80+ pages of handwritten narrative with a series of companion paintings. Each spread is meant to be read aloud, set to the soundtrack that the writing was born from—sparse synths, field recordings, and layered vocals.
+      </p>
+      <p class="note">
+        The title is a wink at the messy, beautiful contradictions of creative work, not a manifesto of despair. It asks visitors to sit with discomfort and delight at the same time.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Creative process</h2>
+      <div class="grid">
+        <div class="callout">
+          <strong>Writing</strong>
+          <p>Lauren drafts in a notebook, then scans pages to preserve texture. The text is layered with annotations that describe the soundscapes she hears while working.</p>
+        </div>
+        <div class="callout">
+          <strong>Visuals</strong>
+          <p>The paint studies begin with washes of graphite and ink, building toward saturated pigments. Each canvas is photographed, printed, and reworked to become part of the book’s physical spread.</p>
+        </div>
+        <div class="callout">
+          <strong>Recording</strong>
+          <p>A portable setup captures ambient noise, vocals, and guitar loops. These audio fragments appear as QR codes in the book, letting readers unlock companion tracks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Featured artwork + book excerpts</h2>
+      <div class="grid">
+        <div>
+          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=80" alt="Fuck Life painting detail" />
+          <p class="note">A mixed-media study referencing tattooed lettering and rainy streetlights.</p>
+        </div>
+        <div>
+          <div class="image-placeholder">Placeholder for book spread scan</div>
+          <p class="note">This page captures the book’s movement between tenderness and fury.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.5rem; color:var(--muted); line-height:1.6;">
+        More imagery, sound notes, and process videos will live here soon. Contact Lauren for exhibit dates or to request a copy of the book/art pack.
+      </p>
+    </section>
+  </div>
+</body>
+</html>
