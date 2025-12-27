@@ -81,8 +81,8 @@
     .copy {
       max-width:620px;
       color:var(--muted);
-      margin-bottom:2rem;
-      line-height:1.7;
+      margin-bottom:0.25rem;
+      line-height:1.6;
       letter-spacing:0.01em;
     }
 
@@ -96,14 +96,23 @@
     }
 
     section.band > * {
-      padding:2.5rem;
+      padding:1.5rem 1.5rem 2rem;
+    }
+
+    section.band h2 {
+      margin-top:0;
+      margin-bottom:0.35rem;
+      font-size:1.25rem;
+      letter-spacing:0.25em;
+      text-transform:uppercase;
+      color:var(--text);
     }
 
     .tiles {
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
       gap:1.25rem;
-      margin-bottom:2rem;
+      margin-bottom:1.25rem;
     }
 
     .tile {
