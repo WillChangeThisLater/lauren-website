@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lauren Torrance — "Fuck Life"</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Archivo+Narrow:wght@600&display=swap');
     :root {
       --bg:#0f0f0f;
       --panel:#1c1c1c;
       --text:#f5f3ef;
       --muted:#c1b9b1;
-      --accent:#f4bfa4;
+      --accent:#ff6b6a;
       --radius:14px;
     }
 
-    * { box-sizing:border-box; }
+    * {
+      box-sizing:border-box;
+    }
 
     body {
       margin:0;
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      background:var(--bg);
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255, 107, 106, 0.20), transparent 35%),
+        radial-gradient(circle at 85% 0%, rgba(255, 255, 255, 0.07), transparent 40%),
+        #141212;
       color:var(--text);
       min-height:100vh;
       padding:0;
@@ -29,6 +35,8 @@
       max-width:1000px;
       margin:0 auto;
       padding:3rem 1.5rem 4rem;
+      position:relative;
+      z-index:1;
     }
 
     header {
@@ -40,18 +48,30 @@
       text-transform:uppercase;
       font-size:0.8rem;
       color:var(--muted);
-      margin-bottom:0.4rem;
+      margin-bottom:0.6rem;
     }
 
     header h1 {
       margin:0;
-      font-size:clamp(2.2rem, 5vw, 3.4rem);
+      font-size:clamp(2.5rem, 5vw, 3.5rem);
+      font-family: 'Archivo Narrow', 'Inter', sans-serif;
+      text-transform:uppercase;
+      letter-spacing:0.3em;
+    }
+
+    header h1::after {
+      content:'—';
+      display:block;
+      margin-top:0.4rem;
+      width:50px;
+      height:1px;
+      background:var(--accent);
     }
 
     header .intro {
       margin-top:0.75rem;
       color:var(--muted);
-      max-width:600px;
+      max-width:620px;
       line-height:1.7;
     }
 
@@ -59,29 +79,42 @@
       display:inline-flex;
       align-items:center;
       padding:0.65rem 1.3rem;
-      border:1px solid var(--accent);
       border-radius:999px;
-      color:var(--accent);
+      color:var(--text);
       text-decoration:none;
       font-size:0.75rem;
       letter-spacing:0.25em;
       margin-top:1rem;
+      border:1px solid transparent;
+      background:var(--accent);
+      box-shadow:0 18px 30px rgba(0,0,0,0.4);
+      transition:transform 0.3s ease;
+    }
+
+    .button-link:hover {
+      transform:translateY(-2px);
     }
 
     .panel {
-      background:var(--panel);
+      background:rgba(28,28,28,0.92);
       border-radius:var(--radius);
       padding:2rem;
       box-shadow:0 20px 45px rgba(0,0,0,0.5);
       margin-bottom:2rem;
+      border:1px solid rgba(255,255,255,0.08);
     }
 
     .panel + .panel {
       margin-top:1rem;
+      border-left:3px solid rgba(255,255,255,0.08);
     }
 
     .panel h2 {
       margin-top:0;
+      font-family: 'Archivo Narrow', 'Inter', sans-serif;
+      letter-spacing:0.3em;
+      text-transform:uppercase;
+      font-size:0.95rem;
     }
 
     .grid {
@@ -95,17 +128,49 @@
       padding:1.5rem;
       border-radius:12px;
       background:rgba(255,255,255,0.02);
+      position:relative;
+    }
+
+    .callout::after {
+      content:'';
+      position:absolute;
+      inset:12px;
+      border:1px dashed rgba(255,255,255,0.08);
+      border-radius:8px;
+      pointer-events:none;
     }
 
     .callout strong {
       display:block;
       margin-bottom:0.4rem;
       color:var(--text);
+      letter-spacing:0.2em;
+      text-transform:uppercase;
     }
 
     .note {
       color:var(--muted);
       font-size:0.9rem;
+    }
+
+    img,
+    .image-placeholder {
+      width:100%;
+      border-radius:12px;
+      display:block;
+      object-fit:cover;
+    }
+
+    .image-placeholder {
+      height:220px;
+      background:#080808;
+      border:1px dashed rgba(255,255,255,0.15);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-size:0.9rem;
+      text-transform:lowercase;
     }
 
     .contact {
@@ -116,11 +181,14 @@
       flex-direction:column;
       gap:0.35rem;
       color:var(--muted);
+      text-transform:lowercase;
     }
 
     .contact h3 {
       margin:0;
       color:var(--text);
+      font-family: 'Archivo Narrow', 'Space Grotesk', sans-serif;
+      letter-spacing:0.35em;
     }
 
     .contact ul {
@@ -138,24 +206,65 @@
       font-weight:600;
     }
 
-    img,
-    .image-placeholder {
-      width:100%;
-      border-radius:12px;
-      display:block;
-      object-fit:cover;
-    }
-
-    .image-placeholder {
-      height:220px;
-      background:#080808;
-      border:1px dashed rgba(255,255,255,0.2);
+    .micro-player {
+      margin-top:2rem;
+      padding:0.75rem 1rem;
+      border-radius:999px;
+      background:rgba(255,255,255,0.03);
       display:flex;
       align-items:center;
-      justify-content:center;
-      color:var(--muted);
-      font-size:0.9rem;
-      text-transform:lowercase;
+      gap:1rem;
+      border:1px solid rgba(255,255,255,0.15);
+    }
+
+    .micro-player__details {
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      gap:0.2rem;
+      text-transform:uppercase;
+      font-size:0.75rem;
+      letter-spacing:0.2em;
+    }
+
+    .micro-player__details strong {
+      font-size:0.85rem;
+      color:var(--text);
+    }
+
+    .micro-player__toggle {
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      border:none;
+      background:var(--accent);
+      color:#0b0b0b;
+      font-size:1.2rem;
+      cursor:pointer;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+      transition:transform 0.3s ease;
+    }
+
+    .micro-player__toggle[aria-pressed=\"true\"] {
+      background:var(--accent-dark, #a50000);
+      transform:scale(1.05);
+    }
+
+    .micro-player__progress {
+      position:relative;
+      width:120px;
+      height:3px;
+      border-radius:99px;
+      background:rgba(255,255,255,0.15);
+      overflow:hidden;
+    }
+
+    .micro-player__progress-inner {
+      position:absolute;
+      inset:0;
+      background:var(--accent);
+      width:0%;
+      transition:width 0.1s linear;
     }
 
     @media (max-width:640px) {
@@ -220,6 +329,20 @@
         More imagery, sound notes, and process videos will live here soon. Contact Lauren for exhibit dates or to request a copy of the book/art pack.
       </p>
     </section>
+    <div class="micro-player" aria-label="Fuck Life preview">
+      <div class="micro-player__details">
+        <strong>Fuck Life — Preview</strong>
+        <span>press play</span>
+      </div>
+      <button type="button" class="micro-player__toggle" aria-pressed="false" aria-label="Play preview">▶</button>
+      <div class="micro-player__progress" aria-hidden="true">
+        <div class="micro-player__progress-inner"></div>
+      </div>
+    </div>
+    <audio id="fucklife-track" preload="metadata">
+      <source src="https://cdn.pixabay.com/download/audio/2023/05/11/audio_f7f5c7a93d.mp3?filename=creative-moment-112489.mp3" type="audio/mpeg" />
+    </audio>
+
     <footer class="contact" aria-label="Contact">
       <h3>Contact</h3>
       <p>Lauren Torrance — artist/writer/musician</p>
@@ -231,5 +354,51 @@
       </ul>
     </footer>
   </div>
+  <script>
+    const fuckLifeTrack = document.getElementById('fucklife-track');
+    const fuckLifeToggle = document.querySelector('.micro-player__toggle');
+    const fuckLifeProgress = document.querySelector('.micro-player__progress-inner');
+    const fuckLifeLabel = document.querySelector('.micro-player__details span');
+
+    const formatTime = seconds => {
+      if (!seconds && seconds !== 0) return '–:–';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+      return `${mins}:${secs}`;
+    };
+
+    const toggleState = () => {
+      fuckLifeToggle.textContent = fuckLifeTrack.paused ? '▶' : '▐▐';
+      fuckLifeToggle.setAttribute('aria-pressed', (!fuckLifeTrack.paused).toString());
+    };
+
+    const updateProgress = () => {
+      if (!fuckLifeTrack.duration) return;
+      const percent = (fuckLifeTrack.currentTime / fuckLifeTrack.duration) * 100;
+      fuckLifeProgress.style.width = `${percent}%`;
+      fuckLifeLabel.textContent = fuckLifeTrack.paused
+        ? 'press play'
+        : `${formatTime(fuckLifeTrack.currentTime)} · playing`;
+    };
+
+    fuckLifeToggle.addEventListener('click', () => {
+      if (fuckLifeTrack.paused) {
+        fuckLifeTrack.play();
+      } else {
+        fuckLifeTrack.pause();
+      }
+      toggleState();
+    });
+
+    fuckLifeTrack.addEventListener('timeupdate', updateProgress);
+    fuckLifeTrack.addEventListener('loadedmetadata', updateProgress);
+    fuckLifeTrack.addEventListener('ended', () => {
+      fuckLifeTrack.currentTime = 0;
+      fuckLifeTrack.pause();
+      toggleState();
+      fuckLifeProgress.style.width = '0%';
+      fuckLifeLabel.textContent = 'press play';
+    });
+  </script>
 </body>
 </html>
